@@ -25,7 +25,7 @@ jobs:
           deno-version: v2.x
 
       - name: Install dependencies
-        run: "deno task install"
+        run: "deno install"
 
       - name: Build step
         run: "deno task build"
