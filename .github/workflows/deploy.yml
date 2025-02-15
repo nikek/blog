@@ -1,0 +1,40 @@
+name: Deploy
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read # Needed to clone the repository
+      pages: write # Required for GitHub Pages deployment
+      deployments: write # Required for GitHub Pages deployment
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Build step
+        run: "deno task build"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
