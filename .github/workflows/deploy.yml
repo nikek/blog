@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      id-token: write # Required for GitHub Pages authentication
       contents: read # Needed to clone the repository
       pages: write # Required for GitHub Pages deployment
       deployments: write # Required for GitHub Pages deployment
