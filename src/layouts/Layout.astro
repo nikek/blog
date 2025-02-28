@@ -1,3 +1,8 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,12 +13,9 @@
     <title>Astro Basics</title>
   </head>
   <body>
-    <nav>
-      <a href={`${import.meta.env.BASE_URL}/`}>Home</a>
-      <a href={`${import.meta.env.BASE_URL}/about`}>About</a>
-      <a href={`${import.meta.env.BASE_URL}/blog`}>Blog</a>
-    </nav>
+    <Navigation />
     <slot />
+    <Footer />
   </body>
 </html>
 
