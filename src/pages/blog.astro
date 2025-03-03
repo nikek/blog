@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import {baseUrl} from "../utils/baseUrl";
+import BlogPostCard from "../components/BlogPostCard.astro";
+const allPosts = Object.values(import.meta.glob("./posts/*.md", {eager:true}));
 ---
 
 <Layout title="My Blog">
@@ -9,9 +10,7 @@ import {baseUrl} from "../utils/baseUrl";
     <p>This is where I'll post my blog entries.</p>
 
     <ul>
-      <li><a href={`${baseUrl}/posts/post-1/`}>Post 1</a></li>
-      <li><a href={`${baseUrl}/posts/post-2/`}>Post 2</a></li>
-      <li><a href={`${baseUrl}/posts/post-3/`}>Post 3</a></li>
+      {allPosts.map((post:any) => <BlogPostCard post={post} />)}
     </ul>
   </main>
 </Layout>
@@ -21,6 +20,11 @@ import {baseUrl} from "../utils/baseUrl";
     margin: auto;
     padding: 1rem;
     max-width: 800px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
   }
 </style>
 

@@ -1,0 +1,22 @@
+---
+const { post } = Astro.props;
+---
+
+<li >
+  <a href={post.url}>
+    <article class="card">
+      <h2>{post.frontmatter.title}</h2>
+      <p>{post.frontmatter.description}</p>
+      <p>{post.frontmatter.pubDate}</p>
+    </article>
+  </a>
+</li>
+
+<style>
+  .card {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+</style> 
