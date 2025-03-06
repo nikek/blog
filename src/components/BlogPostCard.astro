@@ -1,13 +1,20 @@
 ---
+import { baseUrl } from "../utils/baseUrl";
 const { post } = Astro.props;
 ---
 
-<li >
-  <a href={post.url}>
+<li>
+  <a href={`${baseUrl}/posts/${post.id}`}>
     <article class="card">
-      <h2>{post.frontmatter.title}</h2>
-      <p>{post.frontmatter.description}</p>
-      <p>{post.frontmatter.pubDate}</p>
+      <h2>{post.data.title}</h2>
+      <p>{post.data.description}</p>
+      <p>
+        {
+          post.data.pubDate.toLocaleDateString("sv-SE", {
+            dateStyle: "short",
+          })
+        }
+      </p>
     </article>
   </a>
 </li>
@@ -19,4 +26,4 @@ const { post } = Astro.props;
     border-radius: 4px;
     margin-bottom: 1rem;
   }
-</style> 
+</style>

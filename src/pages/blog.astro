@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogPostCard from "../components/BlogPostCard.astro";
-const allPosts = Object.values(import.meta.glob("./posts/*.md", {eager:true}));
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("blog");
 ---
 
 <Layout title="My Blog">
@@ -10,7 +11,7 @@ const allPosts = Object.values(import.meta.glob("./posts/*.md", {eager:true}));
     <p>This is where I'll post my blog entries.</p>
 
     <ul>
-      {allPosts.map((post:any) => <BlogPostCard post={post} />)}
+      {allPosts.map((post: any) => <BlogPostCard post={post} />)}
     </ul>
   </main>
 </Layout>
@@ -27,4 +28,3 @@ const allPosts = Object.values(import.meta.glob("./posts/*.md", {eager:true}));
     padding: 0;
   }
 </style>
-
