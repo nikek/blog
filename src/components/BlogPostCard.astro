@@ -7,7 +7,7 @@ const { post } = Astro.props;
   <a href={`${baseUrl}/posts/${post.id}`}>
     <article class="card">
       <h2>{post.data.title}</h2>
-      <p>{post.data.description}</p>
+      <p class="card-description">{post.data.description}</p>
       <p>
         {
           post.data.pubDate.toLocaleDateString("sv-SE", {
@@ -20,10 +20,16 @@ const { post } = Astro.props;
 </li>
 
 <style>
+  a {
+    text-decoration: none;
+  }
   .card {
-    padding: 1rem;
-    border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 1rem;
+  }
+
+  .card-description {
+    font-family: "Georgia", serif;
+    font-size: 1.2rem;
   }
 </style>
