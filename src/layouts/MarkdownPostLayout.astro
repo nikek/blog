@@ -6,14 +6,24 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title}>
   <main class="reading-content">
-    <h2>{frontmatter.title}</h2>
-    <p>
-      Published on {
-        frontmatter.pubDate.toLocaleDateString("sv-SE", {
-          dateStyle: "short",
-        })
-      }
-    </p>
+    <aside>
+      <time datetime={frontmatter.pubDate.toISOString()}>
+        {
+          frontmatter.pubDate.toLocaleDateString("en-US", {
+            dateStyle: "long",
+          })
+        }
+      </time>
+      <div class="tags">
+        {
+          frontmatter.tags.map((tag: string) => (
+            <p class="tag">
+              <a href={`${baseUrl}/tags/${tag}`}>{tag}</a>
+            </p>
+          ))
+        }
+      </div>
+    </aside>
     {
       frontmatter.image && (
         <img
@@ -23,23 +33,11 @@ const { frontmatter } = Astro.props;
         />
       )
     }
-    <div class="tags">
-      {
-        frontmatter.tags.map((tag: string) => (
-          <p class="tag">
-            <a href={`${baseUrl}/tags/${tag}`}>{tag}</a>
-          </p>
-        ))
-      }
-    </div>
+    <h2>{frontmatter.title}</h2>
     <slot />
   </main>
 </Layout>
 <style>
-  a {
-    color: #00539f;
-  }
-
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -47,10 +45,27 @@ const { frontmatter } = Astro.props;
 
   .tag {
     margin: 0.25em;
-    border: dotted 1px #a1a1a1;
     border-radius: 0.5em;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    color: var(--fg-color);
+    background-color: oklch(from var(--bg-color) calc(l * 1.2) calc(c * 0.9) h);
+  }
+  h2 {
+    margin-block: 0;
+  }
+  aside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 2rem 1rem;
+  }
+  time {
+    font-size: 0.9rem;
+    font-family: monospace;
+    border: 1px solid var(--fg-color);
     padding: 0.5em 1em;
-    font-size: 1.15em;
-    background-color: #f8fcfd;
+    border-radius: 0.5em;
+    width: fit-content;
   }
 </style>

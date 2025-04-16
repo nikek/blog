@@ -7,14 +7,14 @@ const { post } = Astro.props;
   <a href={`${baseUrl}/posts/${post.id}`}>
     <article class="card">
       <h2>{post.data.title}</h2>
-      <p class="card-description">{post.data.description}</p>
-      <p>
+      <time datetime={post.data.pubDate.toISOString()}>
         {
           post.data.pubDate.toLocaleDateString("sv-SE", {
             dateStyle: "short",
           })
         }
-      </p>
+      </time>
+      <p class="card-description">{post.data.description}</p>
     </article>
   </a>
 </li>

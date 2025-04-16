@@ -86,21 +86,31 @@ body {
   }
 }
 
-h1 {
+.niklasek {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 3rem;
+  font-size: 1.2rem;
   font-style: italic;
-  margin: 2rem 0 0;
+  font-weight: 600;
+  margin: 0;
   background: -webkit-radial-gradient(var(--fg-color), var(--fg2-color));
-  background-position: -30rem;
-  background-size: 100% 30rem;
+  background-position: 0;
+  background-size: 200% 30rem;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  transition: background-position 0.25s ease-in-out;
+
+  &:hover {
+    background-position: 100% 0;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
 }
 
 h2 {
   font-family: "Satisfy", cursive;
   font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 p {
@@ -114,6 +124,12 @@ a {
 
   &:not(:focus-visible) {
     outline: none;
+  }
+
+  &.active {
+    color: var(--fg2-color);
+    fill: var(--fg2-color);
+    text-decoration-thickness: 0.18rem;
   }
 }
 

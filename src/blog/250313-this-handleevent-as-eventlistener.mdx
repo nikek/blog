@@ -1,11 +1,12 @@
 ---
-title: 'this.handleEvent as event listener'
-pubDate: 2022-07-08
+title: "this.handleEvent as event listener"
+pubDate: 2025-03-13
 description: "addEventListener can take an object with handleEvent as callback"
 author: Niklas Ek
 tags: ["standard", "event", "js"]
 ---
-I saw this pattern in one of Chris Coyier's articles. It's a neat way to handle events. [MDN explainer](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener:~:text=an%20object%20with%20a%20handleEvent()%20method). Heres is a live example https://nikek.github.io/handleEvent/.
+
+I saw this pattern in one of Chris Coyier's articles. It's a neat way to handle events. [MDN explainer](<https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener:~:text=an%20object%20with%20a%20handleEvent()%20method>). Heres is a live example https://nikek.github.io/handleEvent/.
 
 ```js
 const obj = {
@@ -22,7 +23,7 @@ document.body.addEventListener("click", obj.handleEvent.bind(obj));
 
 When dealing with methods you don't need to bind it to an object or `this`:
 
-```js title="handle-event.js" del={4} ins={5}  "this.handleEvent.bind(this)" /\s(this)\\)/
+```js title="handle-event.js" del={4} ins={5}  "this.handleEvent.bind(this)" /\s(this)\)/
 class HandleEvent {
   constructor() {
     this.button = document.querySelector("button");

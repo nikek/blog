@@ -1,10 +1,26 @@
 ---
 import { baseUrl } from "../utils/baseUrl";
 
+const currentPage = Astro.url.pathname;
 ---
+
 <nav>
-  <a href={`${baseUrl}/`}>Home</a>
-  <a href={`${baseUrl}/about`}>About</a>
-  <a href={`${baseUrl}/blog`}>Blog</a>
-  <a href={`${baseUrl}/tags`}>Tags</a>
+  <a href={`${baseUrl}/`} class={currentPage === "/" ? "active" : ""}>Blog</a>
+  <a href={`${baseUrl}/tags`} class={currentPage === "/tags" ? "active" : ""}
+    >Tags</a
+  >
 </nav>
+
+<style>
+  nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    & > * {
+      margin: 0;
+      padding: 0;
+      text-spacing-trim: trim-all;
+    }
+  }
+</style>
